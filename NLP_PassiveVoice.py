@@ -1,5 +1,9 @@
 import nltk
 
+# Download necessary NLTK data files
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 # Tokenize the text
 def tokenize(text):
   tokens = nltk.word_tokenize(text)
@@ -15,13 +19,19 @@ def find_passive_voice(pos_tags):
   passive_voice = False
   for i, (word, pos) in enumerate(pos_tags):
     if pos == 'VBN':
-      if i+1 >= len(pos_tags) or pos_tags[i+1][1] not in ['MD', 'BE']:
+      if i == 0 or pos_tags[i-1][1] not in ['VBD', 'VBG', 'VBP', 'VBZ']:
         passive_voice = True
   return passive_voice
 
+# Function to analyze a text input and determine if it is in the passive voice
+def analyze_text(text):
+    tokens = tokenize(text)
+    pos_tags = pos_tag(tokens)
+    passive_voice = find_passive_voice(pos_tags)
+    return passive_voice
+
 # Test the model on a sample sentence
-sentence = "The ball was thrown by the boy."
-tokens = tokenize(sentence)
-pos_tags = pos_tag(tokens)
-passive_voice = find_passive_voice(pos_tags)
-print(f"Passive voice: {passive_voice}")
+if __name__ == "__main__":
+    sentence = "The ball was thrown by the boy."
+    print(f"Passive voice: {analyze_text(sentence)}")
+
