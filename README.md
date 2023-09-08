@@ -1,7 +1,3 @@
-Certainly! It sounds like your project involves building an NLP model to detect passive voice in text. Given your description, here's a structured and detailed README that you can use:
-
----
-
 ## NLP Passive Voice Detector
 
 Welcome to the NLP Passive Voice Detector! This project leverages Natural Language Processing (NLP) techniques to identify sentences written in passive voice. The underlying method hinges on identifying past participles not followed by auxiliary verbs, a common indicator of passive voice.
